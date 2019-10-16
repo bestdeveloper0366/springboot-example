@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Getter
 @Setter
@@ -33,11 +32,10 @@ public class Board {
     @CreationTimestamp
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)        //fetch = FetchType.EAGER 공부하기
     private List<Comment> comments = new ArrayList<>();
 
     public void addComments(Comment comment) {
         this.comments.add(comment);
     }
-
 }
